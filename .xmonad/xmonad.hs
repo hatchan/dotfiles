@@ -2,6 +2,7 @@ import Graphics.X11.ExtraTypes.XF86
 import System.IO
 import XMonad
 import XMonad.Core
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
@@ -21,10 +22,14 @@ myKeys =
 --xmproc <- spawnPipe "/path/to/xmobarbinary /home/jgoerzen/.xmobarrc"
 
 main = do
-  xmproc <- spawnPipe "/path/to/xmobarbinary /home/jgoerzen/.xmobarrc"
+  xmproc <- spawnPipe "/usr/bin/xmobar"
   xmonad $ ewmh defaultConfig
     { manageHook = manageDocks <+> manageHook defaultConfig
     , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    , logHook = dynamicLogWithPP xmobarPP
+        { ppOutput = hPutStrLn xmproc
+        , ppTitle = xmobarColor "green" "" . shorten 50
+        }
     , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
     }
     `additionalKeysP` myKeys
