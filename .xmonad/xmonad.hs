@@ -3,6 +3,8 @@ import System.IO
 import XMonad
 import XMonad.Core
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig
 
 myKeys =
@@ -16,7 +18,13 @@ myKeys =
     (("<XF86AudioMute>"), spawn "amixer set Master toggle")
   ]
 
-main = xmonad $ ewmh defaultConfig{
-    handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
-  }
-  `additionalKeysP` myKeys
+--xmproc <- spawnPipe "/path/to/xmobarbinary /home/jgoerzen/.xmobarrc"
+
+main = do
+  xmproc <- spawnPipe "/path/to/xmobarbinary /home/jgoerzen/.xmobarrc"
+  xmonad $ ewmh defaultConfig
+    { manageHook = manageDocks <+> manageHook defaultConfig
+    , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+    }
+    `additionalKeysP` myKeys
