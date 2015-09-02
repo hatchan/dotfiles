@@ -1,8 +1,22 @@
-xecute pathogen#infect()
-syntax on
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-sensible'
+
+call vundle#end()
 filetype plugin indent on
 
-let mapleader=","
+syntax on
 
 set number
 set colorcolumn=80
@@ -12,6 +26,8 @@ set shiftwidth=4
 set expandtab
 
 colorscheme solarized
+
+let mapleader=","
 
 nmap <silent> <Leader>e :Explore<CR>
 nmap <silent> <Leader>w :write<CR>
