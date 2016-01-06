@@ -12,6 +12,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-sensible'
+Plugin 'mephux/vim-jsfmt'
 
 call vundle#end()
 filetype plugin indent on
@@ -21,8 +22,8 @@ syntax on
 set number
 set colorcolumn=80
 set background=dark
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set cursorline
 
