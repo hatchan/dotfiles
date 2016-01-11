@@ -26,6 +26,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set cursorline
+set directory=$HOME/.vim/swapfiles//
 
 colorscheme solarized
 
