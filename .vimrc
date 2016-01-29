@@ -13,6 +13,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-sensible'
 Plugin 'mephux/vim-jsfmt'
+Plugin 'myusuf3/numbers.vim'
 
 call vundle#end()
 filetype plugin indent on
