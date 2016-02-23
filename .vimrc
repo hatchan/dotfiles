@@ -38,3 +38,4 @@ nmap <silent> <Leader>w :write<CR>
 
 " change default go fmt to goimports
 let g:go_fmt_command = "goimports"
+let g:go_fmt_options = "-srcdir " . expand("%:p:h")
