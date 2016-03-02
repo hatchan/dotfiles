@@ -24,7 +24,8 @@ myKeys =
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar"
   xmonad $ ewmh defaultConfig
-    { manageHook = manageDocks <+> manageHook defaultConfig
+    { startupHook = spawn "xset r rate 300 30"
+    , manageHook = manageDocks <+> manageHook defaultConfig
     , layoutHook = avoidStruts  $  layoutHook defaultConfig
     , logHook = dynamicLogWithPP xmobarPP
         { ppOutput = hPutStrLn xmproc
