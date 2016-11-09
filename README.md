@@ -1,1 +1,1 @@
-# xmonad-config
+# dotfiles
