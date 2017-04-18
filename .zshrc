@@ -10,10 +10,12 @@ export GOROOT="$HOME/.go"
 export PATH="$HOME/bin:$GOROOT/bin:$PATH"
 
 # Haskell
-export PATH="$HOME/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.10.3/bin:$PATH"
+export PATH="$HOME/.cabal/bin:$PATH"
 
+# direnv
 eval "$(direnv hook zsh)"
 
+# kubectl
 source <(kubectl completion zsh)
 
 setopt clobber
