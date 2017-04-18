@@ -19,11 +19,9 @@ myKeys =
     (("<XF86AudioLowerVolume>"), spawn "amixer set Master 3-"),
     (("<XF86AudioRaiseVolume>"), spawn "amixer set Master 3+"),
     (("<XF86AudioMute>"), spawn "amixer -D pulse set Master toggle"),
-    (("<XF86MonBrightnessUp>"), spawn "xbacklight -inc 10 -time 0"),
-    (("<XF86MonBrightnessDown>"), spawn "xbacklight -dec 10 -time 0")
+    (("<XF86MonBrightnessUp>"), spawn "xbacklight -inc 20 -time 0"),
+    (("<XF86MonBrightnessDown>"), spawn "xbacklight -dec 20 -time 0")
   ]
-
---xmproc <- spawnPipe "/path/to/xmobarbinary /home/jgoerzen/.xmobarrc"
 
 main = do
   xmproc <- spawnPipe "/home/hatchan/bin/xmobar"
