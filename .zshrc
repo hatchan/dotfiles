@@ -25,3 +25,7 @@ export EDITOR=vim
 
 # Global key for local development
 export WERCKER_SERVICE_KEY=ff
+
+# set vim as default editor
+export EDITOR=vim
+export VISUAL=vim
