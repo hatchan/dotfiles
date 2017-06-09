@@ -11,7 +11,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%multicpu% | %memory% | %dynnetwork% | %StdinReader% }{ %EHAM% | %date%"
+   , template = "%multicpu% | %memory% | %dynnetwork% | %StdinReader% }{ %locks% | %bright% | %battery% | %default:Master% | %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -36,10 +36,20 @@ Config {
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands = 
 
-        -- weather monitor
-        [ Run Weather "EHAM" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
-                             ] 36000
+        [ 
 
+        Run Volume "default" "Master" [ ] 5
+
+        , Run Brightness [ "-t", "<percent>%", "--", "-D", "intel_backlight" ] 60
+
+        , Run Battery
+          [ "-t", "AC: <acstatus> <timeleft> (<left>%)"
+          , "-L", "10", "-H", "80", "-p", "3"
+          , "--", "-O", "<fc=green>[on]</fc>", "-o", "<fc=orange>[off]</fc>"
+          , "-L", "-15", "-H", "-5"
+          , "-l", "red", "-m", "cyan", "-h", "green"]
+         600
+        
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
                              , "--Low"      , "349525"       -- units: kB/s
@@ -49,6 +59,8 @@ Config {
                              , "--high"     , "darkred"
                              , "-w"         , "6"
                              ] 10
+
+        , Run Locks
 
         -- cpu activity monitor
         , Run MultiCpu       [ "--template" , "Cpu: <total>%"
