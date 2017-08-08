@@ -20,7 +20,8 @@ myKeys =
     (("<XF86AudioRaiseVolume>"), spawn "amixer set Master 3+"),
     (("<XF86AudioMute>"), spawn "amixer -D pulse set Master toggle"),
     (("<XF86MonBrightnessUp>"), spawn "xbacklight -inc 20 -time 0"),
-    (("<XF86MonBrightnessDown>"), spawn "xbacklight -dec 20 -time 0")
+    (("<XF86MonBrightnessDown>"), spawn "xbacklight -dec 20 -time 0"),
+    (("M4-p"), spawn "change-mon.sh")
   ]
 
 main = do
@@ -33,6 +34,8 @@ main = do
         { ppOutput = hPutStrLn xmproc
         , ppTitle = xmobarColor "green" "" . shorten 50
         }
-    , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+    , handleEventHook = mconcat 
+                      [ docksEventHook
+                      , handleEventHook defaultConfig <+> fullscreenEventHook]
     }
     `additionalKeysP` myKeys
