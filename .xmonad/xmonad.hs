@@ -16,12 +16,12 @@ myKeys =
     (("<XF86Back>"), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"),
     (("<XF86AudioNext>"), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"),
     (("<XF86Forward>"), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"),
-    (("<XF86AudioLowerVolume>"), spawn "amixer set Master 3-"),
-    (("<XF86AudioRaiseVolume>"), spawn "amixer set Master 3+"),
+    (("<XF86AudioLowerVolume>"), spawn "pactl set-sink-volume @DEFAULT_SINK@ -3%"),
+    (("<XF86AudioRaiseVolume>"), spawn "pactl set-sink-volume @DEFAULT_SINK@ +3%"),
     (("<XF86AudioMute>"), spawn "amixer -D pulse set Master toggle"),
-    (("<XF86MonBrightnessUp>"), spawn "xbacklight -inc 20 -time 0"),
-    (("<XF86MonBrightnessDown>"), spawn "xbacklight -dec 20 -time 0"),
-    (("M4-p"), spawn "change-mon.sh")
+    (("<XF86MonBrightnessUp>"), spawn "brightness -i"),
+    (("<XF86MonBrightnessDown>"), spawn "brightness -d"),
+    (("M4-p"), spawn "change-mon.sh -f")
   ]
 
 main = do

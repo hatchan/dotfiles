@@ -1,0 +1,50 @@
+#!/bin/bash
+
+operation=inc
+
+while getopts "id" opt; do
+  case $opt in
+    i)
+      operation=inc
+      ;;
+    d)
+      operation=dec
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [ "$operation" == "" ]; then
+	>&2 echo "-i or -d is required"
+	exit 1
+fi
+
+current_brightness() {
+	cat /sys/class/backlight/intel_backlight/brightness
+}
+
+max_brightness() {
+	cat /sys/class/backlight/intel_backlight/max_brightness
+}
+
+set_brightness() {
+  sudo /home/hatchan/bin/set_brightness.sh "$1"
+}
+
+current=$(current_brightness)
+max=$(max_brightness)
+step=$(($max/10))
+
+if [ "$operation" == "dec" ]; then
+	new=$(($current - $step))
+	new=$(($new < 0 ? 0 : $new))
+else
+	new=$(($current + $step))
+	new=$(($new > max ? max : $new))
+fi
+
+>&2 echo "Changing brightness from $current to $new"
+set_brightness "$new"
