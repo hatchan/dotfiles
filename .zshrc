@@ -28,4 +28,4 @@ export WERCKER_SERVICE_KEY=ff
 export EDITOR=vim
 export VISUAL=vim
 
-alias vimtmp='vim $(mktemp)'
+alias vimtmp='export TMP_FILE=$(mktemp) && echo "Temporary file opened at $TMP_FILE" && vim $TMP_FILE'
