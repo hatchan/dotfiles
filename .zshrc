@@ -1,3 +1,7 @@
+#
+# Executes commands at the start of an interactive session.
+#
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -7,25 +11,27 @@ fi
 
 # GO
 export GOROOT="$HOME/.go"
-export PATH="$HOME/bin:$GOROOT/bin:$PATH"
-
-# Haskell
-export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$GOROOT/bin:$HOME/go/bin:$PATH"
 
 # direnv
-eval "$(direnv hook zsh)"
+if [ $commands[direnv] ]; then
+  eval "$(direnv hook zsh)"
+fi
 
 # kubectl
-source <(kubectl completion zsh)
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
 
 setopt clobber
 export LC_ALL=en_US.UTF-8
-
-# Global key for local development
-export WERCKER_SERVICE_KEY=ff
 
 # set vim as default editor
 export EDITOR=vim
 export VISUAL=vim
 
 alias vimtmp='export TMP_FILE=$(mktemp) && echo "Temporary file opened at $TMP_FILE" && vim $TMP_FILE'
+alias clipboard='xclip -selection clipboard'
+
+# ~/bin
+export PATH="$HOME/bin:$PATH"
