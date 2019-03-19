@@ -21,7 +21,7 @@ myKeys =
     (("<XF86AudioMute>"), spawn "amixer -D pulse set Master toggle"),
     (("<XF86MonBrightnessUp>"), spawn "brightness -i"),
     (("<XF86MonBrightnessDown>"), spawn "brightness -d"),
-    (("M4-p"), spawn "change-mon.sh -f")
+    (("M4-p"), spawn "change-mon -f")
   ]
 
 main = do
