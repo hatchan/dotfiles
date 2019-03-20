@@ -10,3 +10,9 @@ synclient RightButtonAreaLeft=0
 
 # Ensure the default mouse cursor
 xsetroot -cursor_name left_ptr
+
+# Set cursor size
+echo "Xcursor.size: 32" | xrdb -merge
+
+# Start redshift
+redshift &
