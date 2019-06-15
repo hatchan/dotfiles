@@ -11,6 +11,8 @@
 # Written by Jean-Philippe Ouellet <jpo@vt.edu>
 # Made available under the ISC license.
 
+# Original source: https://gist.github.com/jpouellet/5278239
+
 # only do this if we're in an interactive shell
 [[ -o interactive ]] || return
 
@@ -41,7 +43,17 @@ zbell_begin() {
 # when it finishes, if it's been running longer than $zbell_duration,
 # and we dont have an ignored command in the line, then print a bell.
 zbell_end() {
-	ran_long=$(( $EPOCHSECONDS - $zbell_timestamp >= $zbell_duration ))
+  exit_code=$?
+  if [ "$zbell_lastcmd" = "" ]; then
+    return
+  fi
+  
+  duration=$(( $EPOCHSECONDS - $zbell_timestamp ))
+	ran_long=$(( $duration >= $zbell_duration ))
+	if (( ! ran_long )); then
+    zbell_lastcmd=""
+    return
+  fi
 
 	has_ignored_cmd=0
 	for cmd in ${(s:;:)zbell_lastcmd//|/;}; do
@@ -53,9 +65,17 @@ zbell_end() {
 		fi
 	done
 
-	if (( ! $has_ignored_cmd )) && (( ran_long )); then
-		print -n "\a"
+	if (( ! $has_ignored_cmd )); then
+    if (( exit_code == 0)); then
+      msg="Command finished (${duration}s)"
+      icon="terminal"
+    else
+      msg="Command failed: $exit_code (${duration}s)"
+      icon="error"
+    fi
+    notify-send -i "$icon" "$msg" "$zbell_lastcmd"
 	fi
+  zbell_lastcmd=""
 }
 
 # register the functions as hooks
