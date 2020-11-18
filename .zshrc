@@ -1,6 +1,6 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -8,43 +8,36 @@ fi
 #
 # Executes commands at the start of an interactive session.
 #
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
-export TERM=xterm-256color
-eval $(dircolors "$HOME/.dir_colors/dircolors")
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# GO
-export GOROOT="$HOME/.go"
-export PATH="$GOROOT/bin:$HOME/go/bin:$PATH"
-
-# direnv
-if [ $commands[direnv] ]; then
-  eval "$(direnv hook zsh)"
-fi
-
-# kubectl
-if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-fi
-
-setopt clobber
-export LC_ALL=en_US.UTF-8
+# scc
+export RUSTC_WRAPPER=$HOME/.cargo/bin/sccache cargo build
 
 # set vim as default editor
 export EDITOR=vim
 export VISUAL=vim
 
-alias vimtmp='export TMP_FILE=$(mktemp) && echo "Temporary file opened at $TMP_FILE" && vim $TMP_FILE'
-alias clipboard='xclip -selection clipboard'
+eval "$(direnv hook zsh)"
 
-# ~/bin
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+alias k=kubectl
+
+# Customize to your needs...
+
+zbell_ignore="man $EDITOR $PAGER ssh"
+source "$HOME/.zsh_scripts/long_process.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
