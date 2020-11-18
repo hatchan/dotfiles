@@ -18,6 +18,9 @@ zstyle ':prezto:*:*' color 'yes'
 # Add additional directories to load prezto modules from
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zprezto-contrib
 
+# Allow module overrides when pmodule-dirs causes module name collisions
+# zstyle ':prezto:load' pmodule-allow-overrides 'yes'
+
 # Set the Zsh modules to load (man zshmodules).
 # zstyle ':prezto:load' zmodule 'attr' 'stat'
 
@@ -37,7 +40,6 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'prompt' \
-  'ssh' \
   'git'
 
 #
@@ -116,7 +118,6 @@ zstyle ':prezto:module:editor' ps-context 'yes'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-# zstyle ':prezto:module:prompt' theme 'sorin'
 zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 # Set the working directory prompt display length.
@@ -160,7 +161,7 @@ zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+# zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
 
 #
 # Syntax Highlighting

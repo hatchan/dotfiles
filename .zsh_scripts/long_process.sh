@@ -70,11 +70,13 @@ zbell_end() {
 		if (( exit_code == 0)); then
 			msg="Command finished (${duration}s)"
 			icon="terminal"
+			timeout=5000
 		else
 			msg="Command failed: $exit_code (${duration}s)"
 			icon="error"
+			timeout=10000
 		fi
-		notify-send -i "$icon" "$msg" "$zbell_lastcmd"
+		notify-send -i "$icon" -t "$timeout" "$msg" "$zbell_lastcmd"
 	fi
 	zbell_lastcmd=""
 }
