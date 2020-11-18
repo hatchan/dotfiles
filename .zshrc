@@ -17,27 +17,38 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+# set vim as default editor
+export EDITOR=vim
+export VISUAL=vim
+export LC_ALL=en_US.UTF-8
+
+# Customize to your needs...
+eval $(dircolors "$HOME/.dir_colors/dircolors")
+
+# GO
+export GOROOT="$HOME/.go"
+export PATH="$GOROOT/bin:$HOME/go/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# scc
+# rust
 export RUSTC_WRAPPER=$HOME/.cargo/bin/sccache cargo build
 
-# set vim as default editor
-export EDITOR=vim
-export VISUAL=vim
-
+# direnv
 eval "$(direnv hook zsh)"
 
+# kubectl
+source <(kubectl completion zsh)
 alias k=kubectl
 
-# Customize to your needs...
-
+# Long process
 zbell_ignore="man $EDITOR $PAGER ssh"
 source "$HOME/.zsh_scripts/long_process.sh"
+
+# PATH
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
