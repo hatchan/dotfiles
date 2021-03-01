@@ -1,5 +1,5 @@
 # default options
-
+sort=+time
 
 # Specific overrides
 [app-name="Spotify"]
