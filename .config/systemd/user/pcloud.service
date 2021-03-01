@@ -1,0 +1,10 @@
+[Unit]
+Description=pCLoud
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/home/hatchan/bin/pcloud
+
+[Install]
+WantedBy=default.target
