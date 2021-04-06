@@ -42,7 +42,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 # built-in screen always scale
-set $office "Dell Inc. DELL U2720Q F3G6Y13"
+set $office "Dell Inc. DELL U2720Q 84G6Y13"
 set $laptop eDP-1
 
 output $laptop scale 2
@@ -217,6 +217,9 @@ bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 
 bindsym Mod4+l exec $lock
 bindsym $mod+grave workspace back_and_forth
