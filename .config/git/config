@@ -1,3 +1,7 @@
 [user]
 	email = bennovandenberg@gmail.com
 	name = Benno van den Berg
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /home/hatchan/.config/git/gitignore
