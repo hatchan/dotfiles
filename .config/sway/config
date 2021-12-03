@@ -237,7 +237,6 @@ input "type:touchpad" {
 }
 
 exec mako
-exec pcloud
 
 for_window [class="Spotify"] move container to workspace $ws5
 assign [class="Slack"] workspace $ws3
@@ -246,6 +245,8 @@ for_window [class="1Password"] floating enable
 
 for_window [app_id="zoom"] floating enable
 for_window [class="Around"] floating enable
+
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
 
 #
 # Status Bar:
