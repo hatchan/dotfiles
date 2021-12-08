@@ -1,0 +1,8 @@
+[Unit]
+Description=Portal service (wlr)
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.impl.portal.desktop.wlr
+Environment=XDG_CURRENT_DESKTOP=sway
+ExecStart=/usr/libexec/xdg-desktop-portal-wlr
