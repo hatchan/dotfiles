@@ -224,8 +224,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym Mod4+l exec $lock
 bindsym $mod+grave workspace back_and_forth
 
-bindsym Print exec grim - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=seconds).png" | wl-copy
-bindsym $mod+Print exec grim -g "$(slurp)" - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=seconds).png" | wl-copy
+bindsym Print exec file= grim - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
+bindsym $mod+Print exec grim -g "$(slurp)" - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
 
 input * xkb_numlock enable
 
