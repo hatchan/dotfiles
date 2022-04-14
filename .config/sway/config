@@ -224,6 +224,9 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym Mod4+l exec $lock
 bindsym $mod+grave workspace back_and_forth
 
+bindsym Print exec grim - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=seconds).png" | wl-copy
+bindsym $mod+Print exec grim -g "$(slurp)" - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=seconds).png" | wl-copy
+
 input * xkb_numlock enable
 
 input "type:keyboard" {
