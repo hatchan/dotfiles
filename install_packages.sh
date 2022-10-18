@@ -25,4 +25,5 @@ yay -S --needed \
 	community/sccache \
 	community/mold \
 	extra/clang \
-	community/thermald
+	community/thermald \
+	community/github-cli
