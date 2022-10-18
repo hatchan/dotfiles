@@ -24,4 +24,5 @@ yay -S --needed \
 	aur/pcloud-drive \
 	community/sccache \
 	community/mold \
-	extra/clang
+	extra/clang \
+	community/thermald
