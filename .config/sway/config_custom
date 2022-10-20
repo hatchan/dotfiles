@@ -53,8 +53,8 @@ set $powermenu ~/.config/waybar/scripts/power-menu.sh
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 exec swayidle -w\
-    timeout 1070 'swaylock -f -C ~/.config/swaylock/config'\
-    timeout 770 'swaymsg "output * dpms off"' \
+    timeout 300 'swaylock -f -C ~/.config/swaylock/config'\
+    timeout 300 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock -C ~/.config/swaylock/config'
 
@@ -266,7 +266,7 @@ exec nm-applet --indicator
 # GTK3 applications take a long time to start
 exec systemctl --user import-environment
 exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # Start applications in ~/.config/autostart/
 exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
