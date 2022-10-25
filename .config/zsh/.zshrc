@@ -10,5 +10,13 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Customize to your needs...
-eval "$(starship init zsh)"
+if whence starship >& /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+if whence direnv >& /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
