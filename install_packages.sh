@@ -26,4 +26,5 @@ yay -S --needed \
 	community/mold \
 	extra/clang \
 	community/thermald \
-	community/github-cli
+	community/github-cli \
+	community/aws-cli-v2
