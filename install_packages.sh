@@ -27,4 +27,9 @@ yay -S --needed \
 	extra/clang \
 	community/thermald \
 	community/github-cli \
-	community/aws-cli-v2
+	community/aws-cli-v2 \
+	community/kubectl \
+	community/kubectx \
+	aur/tilt-bin \
+	aur/ctlptl-bin \
+	aur/kind-bin
