@@ -32,4 +32,6 @@ yay -S --needed \
 	community/kubectx \
 	aur/tilt-bin \
 	aur/ctlptl-bin \
-	aur/kind-bin
+	aur/kind-bin \
+	community/terraform \
+	community/cargo-nextest
