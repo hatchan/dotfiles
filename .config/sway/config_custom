@@ -397,6 +397,9 @@ bar {
 
 # Custom keybindings
 bindsym $mod+grave workspace back_and_forth
+bindsym Print exec file= grim - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
+bindsym $mod+Print exec grim -g "$(slurp)" - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
+
 
 # Input overrides
 input * xkb_numlock enable
