@@ -5,7 +5,7 @@ IFS=$'\n\t'
 yay -S --needed \
 	extra/vim \
 	extra/zsh \
-	aur/nerd-fonts-fira-code \
+	community/ttf-firacode-nerd \
 	community/starship \
 	extra/gnome-keyring \
 	aur/visual-studio-code-bin \
