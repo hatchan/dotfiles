@@ -34,4 +34,7 @@ yay -S --needed \
 	aur/ctlptl-bin \
 	aur/kind-bin \
 	community/terraform \
-	community/cargo-nextest
+	community/cargo-nextest \
+	community/helm \
+	community/discord \
+	aur/ookla-speedtest-bin
