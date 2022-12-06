@@ -20,3 +20,11 @@ fi
 if whence direnv >& /dev/null; then
   eval "$(direnv hook zsh)"
 fi
+
+if [ -e "/usr/share/nvm/nvm.sh" ] ; then
+  export NVM_DIR="$HOME/.nvm"
+  source /usr/share/nvm/nvm.sh
+  # Remember to run /usr/share/nvm/install-nvm-exec once
+fi
+
+alias k=kubectl
