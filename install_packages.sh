@@ -37,4 +37,7 @@ yay -S --needed \
 	community/cargo-nextest \
 	community/helm \
 	community/discord \
-	aur/ookla-speedtest-bin
+	aur/ookla-speedtest-bin \
+	aur/protonvpn \
+	community/yt-dlp \
+	extra/smbclient
