@@ -40,4 +40,5 @@ yay -S --needed \
 	aur/ookla-speedtest-bin \
 	aur/protonvpn \
 	community/yt-dlp \
-	extra/smbclient
+	extra/smbclient \
+	community/obsidian
