@@ -41,4 +41,6 @@ yay -S --needed \
 	aur/protonvpn \
 	community/yt-dlp \
 	extra/smbclient \
-	community/obsidian
+	community/obsidian \
+	community/arduino-cli \
+	aur/arduino-ide-bin
