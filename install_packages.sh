@@ -43,4 +43,6 @@ yay -S --needed \
 	extra/smbclient \
 	community/obsidian \
 	community/arduino-cli \
-	aur/arduino-ide-bin
+	aur/arduino-ide-bin \
+	aur/phoronix-test-suite \
+	community/binaryen
