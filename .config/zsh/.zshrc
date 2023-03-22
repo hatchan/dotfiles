@@ -27,4 +27,8 @@ if [ -e "/usr/share/nvm/nvm.sh" ] ; then
   # Remember to run /usr/share/nvm/install-nvm-exec once
 fi
 
+if [[ -s "/usr/share/fzf/key-bindings.zsh" ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+fi
+
 alias k=kubectl

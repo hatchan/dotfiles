@@ -45,4 +45,6 @@ yay -S --needed \
 	community/arduino-cli \
 	aur/arduino-ide-bin \
 	aur/phoronix-test-suite \
-	community/binaryen
+	community/binaryen \
+	community/visidata \
+	community/fzf
