@@ -47,4 +47,5 @@ yay -S --needed \
 	aur/phoronix-test-suite \
 	community/binaryen \
 	community/visidata \
-	community/fzf
+	community/fzf \
+	wireguard-tools
