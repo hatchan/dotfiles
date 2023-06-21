@@ -56,14 +56,11 @@ Arc-Dark Color Scheme
     background: transparent;
     color: #bebebe;
     background-color: @base1;
-    font-family: UbuntuMono;
-    font-size: 14px;
-}
+    font-family: "FontAwesome";
+    font-size: 12px; }
 
-/* Every modules */
-#battery,
-#clock,
-#backlight,
+    /* Every modules */
+    #battery, #clock, #backlight,
 #cpu,
 #custom-keyboard-layout,
 #memory,
@@ -163,18 +160,18 @@ Arc-Dark Color Scheme
 
 #workspaces {
     font-size:13px;
+    padding:0 0.5rem;
 }
 
 #workspaces button {
     border-bottom: 3px solid transparent;
     margin-bottom: 0px;
-    padding:0px;
+    padding:0 0.3rem;
 }
 
 #workspaces button.focused {
     border-bottom: 3px solid  @highlight;
     margin-bottom: 1px;
-    padding-left:0;
 }
 
 #workspaces button.urgent {
