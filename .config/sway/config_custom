@@ -53,7 +53,7 @@ set $powermenu ~/.config/waybar/scripts/power-menu.sh
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 exec swayidle -w\
-    timeout 300 'swaylock -f -C ~/.config/swaylock/config'\
+    timeout 300 'swaylock -f -C ~/.config/swaylock/config' \
     timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock -C ~/.config/swaylock/config'
@@ -351,8 +351,11 @@ input "type:touchpad" {
 
 # --> imported from: output
 
-set $office "Dell Inc. DELL U2720Q 84G6Y13"
-output $office scale 1.5
+set $office1 "Dell Inc. DELL U2720Q 84G6Y13"
+output $office1 scale 1.5
+
+set $office2 "LG Electronics LG HDR 4K 0x0000A7F2"
+output $office2 scale 1.5
 
 # --> imported from: theme
 
@@ -367,7 +370,7 @@ exec_always ~/.config/sway/scripts/import-gsettings
 default_border pixel 1
 
 # Default Font
-font pango:Noto Sans Regular 10
+font pango:FiraCode Nerd Font 10
 
 # Thin borders:
 #smart_borders on
