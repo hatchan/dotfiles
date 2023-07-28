@@ -21,7 +21,7 @@
         "network",
         "memory",
         "cpu",
-	"temperature",
+        "temperature",
         "pulseaudio",
         //"custom/keyboard-layout",
         "battery",
@@ -113,7 +113,7 @@
         "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
         "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-disconnected": "⚠  Disconnected",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
     },
     "network#vpn": {
         "interface": "tun0",
@@ -134,21 +134,21 @@
 
     "sway/workspaces": {
         "format": "  {value}  ",
-	"disable-scroll-wraparound": true
+	    "disable-scroll-wraparound": true
     },
 
     "pulseaudio": {
         "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted": "婢 {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "headphone": "",
+            "hands-free": "וֹ",
+            "headset": "  ",
             "phone": "",
             "portable": "",
             "car": "",
@@ -158,14 +158,14 @@
         "on-scroll-up": "pamixer -ui 2",
         "on-scroll-down": "pamixer -ud 2",
     },
-
-    "custom/weather": {
-        "exec": "~/.config/waybar/scripts/weather.sh",
-        "format": "{text} {icon}",
-        "return-type": "json",
-        "interval": 600,
-        "tooltip-format": "{tooltip}"
-    },
+ 
+    // to use the weather module replace <your_location> with your city or town
+    // note: do not use spaces: new york would be newyork
+    // "custom/weather": {
+    //     "exec": "~/.config/waybar/scripts/weather.sh <your_location>", 
+    //     "return-type": "json",
+    //     "interval": 600,
+    // },
 
     "tray": {
         "icon-size": 18,
