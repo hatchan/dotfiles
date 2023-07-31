@@ -50,4 +50,5 @@ yay -S --needed \
 	extra/fzf \
 	wireguard-tools \
 	aur/1password-cli \
-	aur/1password
+	aur/1password \
+	extra/noto-fonts-emoji
