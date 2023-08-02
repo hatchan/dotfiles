@@ -54,4 +54,5 @@ yay -S --needed \
     extra/noto-fonts-emoji \
     aur/otf-font-awesome-4 \
     aur/otf-font-awesome-5 \
-    aur/ccat
+    aur/ccat \
+    extra/udisks2
