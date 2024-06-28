@@ -164,6 +164,12 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
     bindsym $mod+Shift+0 move container to workspace $ws0
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    bindsym $mod+Control+Shift+Right move workspace to output right
+    bindsym $mod+Control+Shift+Left move workspace to output left
+    bindsym $mod+Control+Shift+Down move workspace to output down
+    bindsym $mod+Control+Shift+Up move workspace to output up
+
 #
 # Layout stuff:
 #
@@ -310,7 +316,6 @@ for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1,
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
 for_window [title="Picture in picture"] floating enable, sticky enable
 for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
-for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="xsensors"] floating enable
 for_window [title="Save File"] floating enable
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
