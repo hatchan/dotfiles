@@ -7,167 +7,180 @@
     "height": 30,
 
     "modules-left": [
-        "custom/launcher",
-        "sway/workspaces",
-        "sway/mode",
-        "sway/window",
+      "custom/launcher",
+      "sway/workspaces",
+      "sway/mode",
+      "sway/window"
     ],
 
-    "modules-center": [
-    ],
+    "modules-center": [],
 
     "modules-right": [
-        "idle_inhibitor",
-        "network",
-        "memory",
-        "cpu",
-        "temperature",
-        "pulseaudio",
-        "battery",
-        "backlight",
-        "clock",
-        "tray",
-        "custom/power",
+      "idle_inhibitor",
+      "power-profiles-daemon",
+      "network",
+      "memory",
+      "cpu",
+      "temperature",
+      "pulseaudio",
+      "battery",
+      "backlight",
+      "clock",
+      "tray",
+      "custom/power"
     ],
 
     // Modules
 
     "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
     },
 
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
+      // "thermal-zone": 2,
+      // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 80,
+      // "format-critical": "{temperatureC}°C {icon}",
+      "format": "{icon} {temperatureC}°C",
+      "format-icons": ["", "", ""]
     },
 
     "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+      "states": {
+        // "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% ",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{time} {icon}",
+      // "format-good": "", // An empty format will hide the module
+      // "format-full": "",
+      "format-icons": ["", "", "", "", ""]
     },
 
     "clock": {
-        "interval": 1,
-        "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
-        "format": " {:%H:%M:%OS | %Y-%m-%d}",
-        "tooltip-format": "{:%e %B %Y}"
+      "interval": 1,
+      "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
+      "format": " {:%H:%M:%OS | %Y-%m-%d}",
+      "tooltip-format": "{:%e %B %Y}"
     },
 
     "cpu": {
-        "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
-        "states": {
-            "warning": 70,
-            "critical": 90,
-        },
+      "interval": 5,
+      "format": "  {usage}% ({load})", // Icon: microchip
+      "states": {
+        "warning": 70,
+        "critical": 90
+      }
     },
 
     "custom/keyboard-layout": {
-        "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-        // Interval set only as a fallback, as the value is updated by signal
-        "interval": 30,
-        "format": "  {}", // Icon: keyboard
-        // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-        "signal": 1, // SIGHUP
-        "tooltip": false,
-        "on-click": "~/.config/waybar/scripts/keyhint.sh",
+      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+      // Interval set only as a fallback, as the value is updated by signal
+      "interval": 30,
+      "format": "  {}", // Icon: keyboard
+      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+      "signal": 1, // SIGHUP
+      "tooltip": false,
+      "on-click": "~/.config/waybar/scripts/keyhint.sh"
     },
 
     "memory": {
-        "interval": 5,
-        "format": " {}%", // Icon: memory
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
+      "interval": 5,
+      "format": " {}%", // Icon: memory
+      "states": {
+        "warning": 70,
+        "critical": 90
+      }
     },
 
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "  {essid} ({signalStrength}%)",
+      "format-ethernet": "{ipaddr}/{cidr} ",
+      "tooltip-format": "{ifname} via {gwaddr} ",
+      "format-linked": "{ifname} (No IP) ",
+      "format-disconnected": "Disconnected ⚠",
+      "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 
     "sway/mode": {
-        "format": "{}",
-        "tooltip": false
+      "format": "{}",
+      "tooltip": false
     },
 
     "sway/window": {
-        "format": "{}",
-        "max-length": 120
+      "format": "{}",
+      "max-length": 120
     },
 
     "sway/workspaces": {
-        "format": "  {value}  ",
-	    "disable-scroll-wraparound": true
+      "format": "  {value}  ",
+      "disable-scroll-wraparound": true
     },
 
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol",
-        "on-scroll-up": "pamixer -ui 2",
-        "on-scroll-down": "pamixer -ud 2",
+      // "scroll-step": 1, // %, can be a float
+      "format": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol",
+      "on-scroll-up": "pamixer -ui 2",
+      "on-scroll-down": "pamixer -ud 2"
     },
 
     "tray": {
-        // "icon-size": 18,
-        "spacing":10,
-     },
+      // "icon-size": 18,
+      "spacing": 10
+    },
 
     "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-scroll-down": "brightnessctl -c backlight set 1%-",
-        "on-scroll-up": "brightnessctl -c backlight set +1%"
+      "format": "{percent}% {icon}",
+      "format-icons": ["", "", "", "", "", "", "", "", ""],
+      "on-scroll-down": "brightnessctl -c backlight set 1%-",
+      "on-scroll-up": "brightnessctl -c backlight set +1%"
     },
 
     "custom/launcher": {
-        "format":" ",
-        "on-click": "exec wofi -c ~/.config/wofi/config -I",
-        "tooltip": false,
+      "format": " ",
+      "on-click": "exec wofi -c ~/.config/wofi/config -I",
+      "tooltip": false
     },
 
     "custom/power": {
-        "format":"⏻",
-        "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
-        "tooltip": false,
+      "format": "⏻",
+      "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
+      "tooltip": false
     },
-}
+
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+
+  }
