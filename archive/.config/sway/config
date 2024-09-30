@@ -267,11 +267,17 @@ bindswitch --reload --locked lid:off output $laptop enable
 exec_always ~/.config/sway/scripts/clamshell.sh
 
 # Assign some applications to workspaces
-for_window [class="Spotify"] move container to workspace $ws5
+assign [class="Spotify"] workspace $ws5
+assign [app_id="Spotify"] workspace $ws5
+
 assign [class="Slack"] workspace $ws3
+assign [app_id="Slack"] workspace $ws3
+
 assign [class="discord"] workspace $ws3
+assign [app_id="discord"] workspace $ws3
 
 for_window [class="1Password"] floating enable
+for_window [app_id="1Password"] floating enable
 
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
 for_window [shell="x_wayland"] title_format "%class - %title"
@@ -310,6 +316,8 @@ client.background       #F8F8F2
 
 exec "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME"
 exec "systemctl --user start sway-session.target"
+
+exec swaybg -i ~/.config/sway/sway.png
 
 # Start applications in ~/.config/autostart/
 exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
