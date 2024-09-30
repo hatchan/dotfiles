@@ -4,6 +4,6 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /home/hatchan/.config/git/gitignore
+	excludesfile = ~/.config/git/gitignore
 [alias]
   tree = log --oneline --graph --decorate --all

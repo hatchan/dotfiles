@@ -328,9 +328,7 @@ for_window [app_id="Chromium"] inhibit_idle fullscreen
 for_window [class="Spotify"] move container to workspace $ws5
 assign [class="Slack"] workspace $ws3
 assign [class="discord"] workspace $ws3
-
 for_window [class="1Password"] floating enable
-
 for_window [app_id="zoom"] floating enable
 for_window [class="Around"] floating enable
 
