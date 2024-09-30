@@ -87,8 +87,7 @@
       "format": "  {}", // Icon: keyboard
       // Signal sent by Sway key binding (~/.config/sway/key-bindings)
       "signal": 1, // SIGHUP
-      "tooltip": false,
-      "on-click": "~/.config/waybar/scripts/keyhint.sh"
+      "tooltip": false
     },
 
     "memory": {
@@ -159,17 +158,11 @@
       "on-scroll-up": "brightnessctl -c backlight set +1%"
     },
 
-    "custom/launcher": {
-      "format": " ",
-      "on-click": "exec wofi -c ~/.config/wofi/config -I",
-      "tooltip": false
-    },
-
-    "custom/power": {
-      "format": "⏻",
-      "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
-      "tooltip": false
-    },
+    // "custom/power": {
+    //   "format": "⏻",
+    //   "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
+    //   "tooltip": false
+    // },
 
     "power-profiles-daemon": {
       "format": "{icon}",
