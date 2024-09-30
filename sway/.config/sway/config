@@ -4,13 +4,10 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-# --> imported from: default
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -18,19 +15,15 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term-float alacritty
+set $term alacritty
 
 # Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu wofi -c ~/.config/wofi/config -I
-
-set $powermenu ~/.config/waybar/scripts/power-menu.sh
+set $menu wmenu-run
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-#output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 #
 # Example configuration:
@@ -78,20 +71,14 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
 #
 # Basics:
 #
-    # Start a floating terminal
-    bindsym $mod+Return exec $term-float
-
-    # Open the power menu
-    bindsym $mod+Shift+e exec $powermenu
+    # Start a terminal
+    bindsym $mod+Return exec $term
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
-
-    # Activities
-    bindsym $mod+p exec ~/.config/wofi/windows.py
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -102,6 +89,9 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -151,6 +141,7 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
     bindsym $mod+8 workspace $ws8
     bindsym $mod+9 workspace $ws9
     bindsym $mod+0 workspace $ws0
+
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace $ws1
     bindsym $mod+Shift+2 move container to workspace $ws2
@@ -162,14 +153,12 @@ bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
     bindsym $mod+Shift+8 move container to workspace $ws8
     bindsym $mod+Shift+9 move container to workspace $ws9
     bindsym $mod+Shift+0 move container to workspace $ws0
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
 
+    # Move workspace to other outputs
     bindsym $mod+Control+Shift+Right move workspace to output right
     bindsym $mod+Control+Shift+Left move workspace to output left
     bindsym $mod+Control+Shift+Down move workspace to output down
     bindsym $mod+Control+Shift+Up move workspace to output up
-
 #
 # Layout stuff:
 #
@@ -216,15 +205,15 @@ mode "resize" {
     # up will shrink the containers height
     # down will grow the containers height
     bindsym $left resize shrink width 10px
-    bindsym $right resize grow width 10px
-    bindsym $up resize shrink height 10px
     bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
-    bindsym Right resize grow width 10px
-    bindsym Up resize shrink height 10px
     bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -232,115 +221,68 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+#
+# Utilities:
+#
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 
-# Resize floating windows with mouse scroll:
-    bindsym --whole-window --border $mod+button4 resize shrink height 5 px or 5 ppt
-    bindsym --whole-window --border $mod+button5 resize grow height 5 px or 5 ppt
-    bindsym --whole-window --border $mod+Shift+button4 resize shrink width 5 px or 5 ppt
-    bindsym --whole-window --border $mod+Shift+button5 resize grow width 5 px or 5 ppt
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-#
-# Volume
-#
-    bindsym --locked XF86AudioRaiseVolume exec pamixer -ui 4
-    bindsym --locked XF86AudioLowerVolume exec pamixer -ud 4
-    bindsym --locked XF86AudioMute exec pamixer -t
-#
-# Player
-#
+    # Switch between two workspaces using a backtick
+    bindsym $mod+grave workspace back_and_forth
+
+    # Screenshot
+    bindsym Print exec file= grim - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
+    bindsym $mod+Print exec grim -g "$(slurp)" - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
+
+    # Playerctl
     bindsym --locked XF86AudioPlay exec playerctl play-pause
     bindsym --locked XF86AudioPause exec playerctl pause
     bindsym --locked XF86AudioNext exec playerctl next
     bindsym --locked XF86AudioPrev exec playerctl previous
+
 #
-# Backlight
+# Status Bar:
 #
-    bindsym XF86MonBrightnessUp exec brightnessctl -c backlight set +5%
-    bindsym XF86MonBrightnessDown exec brightnessctl -c backlight set 5%-
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    swaybar_command waybar
+}
 
-# --> imported from: autostart_applications
-
-# Auth with polkit-gnome:
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Desktop notifications
-exec mako
-
-# Network Applet
-exec nm-applet --indicator
-
-# GTK3 applications take a long time to start
-exec systemctl --user import-environment
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-
-# Start applications in ~/.config/autostart/
-exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-
-# --> imported from: clamshell
+# exec systemctl --user import-environment
+# exec dbus-update-activation-environment --all --systemd
 
 # Clamshell Mode
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
+# Make sure that the display is enabled/disabled according to its state
 exec_always ~/.config/sway/scripts/clamshell.sh
 
-# --> imported from: application_defaults
+# Assign some applications to workspaces
+assign [class="Spotify"] workspace $ws5
+assign [app_id="Spotify"] workspace $ws5
 
-for_window [app_id="xed"] focus
-
-# set floating (nontiling)for apps needing it:
-for_window [class="Yad" instance="yad"] floating enable
-for_window [app_id="yad"] floating enable
-for_window [app_id="blueman-manager"] floating enable,  resize set width 40 ppt height 30 ppt
-
-# set floating (nontiling) for special apps:
-for_window [class="Xsane" instance="xsane"] floating enable
-for_window [app_id="pavucontrol" ] floating enable, resize set width 40 ppt height 30 ppt
-for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60 ppt height 50 ppt
-for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-for_window [app_id="pamac-manager"] floating enable, resize set width 80 ppt height 70 ppt
-for_window [class="Lxappearance"] floating enable, resize set width 60 ppt height 50 ppt
-
-# set floating for window roles
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [window_role="About"] floating enable
-for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
-for_window [title="Picture in picture"] floating enable, sticky enable
-for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
-for_window [app_id="xsensors"] floating enable
-for_window [title="Save File"] floating enable
-for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
-
-# Inhibit idle
-for_window [app_id="firefox"] inhibit_idle fullscreen
-for_window [app_id="Chromium"] inhibit_idle fullscreen
-
-# Custom
-for_window [class="Spotify"] move container to workspace $ws5
 assign [class="Slack"] workspace $ws3
+assign [app_id="Slack"] workspace $ws3
+
 assign [class="discord"] workspace $ws3
+assign [app_id="discord"] workspace $ws3
+
 for_window [class="1Password"] floating enable
-for_window [app_id="zoom"] floating enable
-for_window [class="Around"] floating enable
+for_window [app_id="1Password"] floating enable
 
-# --> imported from: input
+for_window [shell="xdg_shell"] title_format "%title (%app_id)"
+for_window [shell="x_wayland"] title_format "%class - %title"
 
-input type:keyboard xkb_layout "us"
-
-exec_always {
-    'swaymsg input type:keyboard xkb_layout "$(localectl status | grep "X11 Layout" | sed -e "s/^.*X11 Layout://")"'
-    'swaymsg input type:keyboard xkb_variant "$(localectl status | grep "X11 Variant" | sed -e "s/^.*X11 Variant://")"'
-}
-
+# Change the keyboard repeat and delay rate
 input "type:keyboard" {
     repeat_delay 300
     repeat_rate 50
@@ -353,7 +295,7 @@ input "type:touchpad" {
     natural_scroll disabled
 }
 
-# --> imported from: output
+input * xkb_numlock enable
 
 set $office1 "Dell Inc. DELL U2720Q 84G6Y13"
 output $office1 scale 1.5
@@ -361,32 +303,10 @@ output $office1 scale 1.5
 set $office2 "LG Electronics LG HDR 4K 0x0000A7F2"
 output $office2 scale 1.5
 
-# --> imported from: theme
-
-# Apply gtk theming
-exec_always ~/.config/sway/scripts/import-gsettings
-
-# Set inner/outer gaps
-#gaps inner 1
-#gaps outer 1
-
-# Hide titlebar on windows:
+# Theme overrides
 default_border pixel 1
+font FontAwesome 10
 
-# Default Font
-font pango:Noto Sans Regular 10
-
-# Thin borders:
-#smart_borders on
-
-# Set wallpaper:
-exec swaybg -i ~/.config/sway/sway.png
-
-# Title format for windows
-for_window [shell="xdg_shell"] title_format "%title (%app_id)"
-for_window [shell="x_wayland"] title_format "%class - %title"
-
-# class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #FFC300
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
@@ -394,19 +314,10 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    swaybar_command waybar
-}
+exec "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME"
+exec "systemctl --user start sway-session.target"
 
-# Custom keybindings
-bindsym $mod+grave workspace back_and_forth
-bindsym Print exec file= grim - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
-bindsym $mod+Print exec grim -g "$(slurp)" - | tee "$HOME/Pictures/Screenshots/$(date --rfc-3339=ns).png" | wl-copy && notify-send -i "terminal" -t "3000" "Copied screenshot to clipboard" "Stored under ~/Pictures/Screenshots/"
+exec swaybg -i ~/.config/sway/sway.png
 
-
-# Input overrides
-input * xkb_numlock enable
+# Start applications in ~/.config/autostart/
+exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
