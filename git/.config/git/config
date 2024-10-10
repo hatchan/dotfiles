@@ -1,0 +1,9 @@
+[user]
+	email = bennovandenberg@gmail.com
+	name = Benno van den Berg
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = ~/.config/git/gitignore
+[alias]
+  tree = log --oneline --graph --decorate --all
