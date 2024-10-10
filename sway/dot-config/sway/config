@@ -23,7 +23,7 @@ set $menu wmenu-run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-# output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_2048x1536.png fill
 
 #
 # Example configuration:
@@ -316,8 +316,6 @@ client.background       #F8F8F2
 
 exec "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME"
 exec "systemctl --user start sway-session.target"
-
-exec swaybg -i ~/.config/sway/sway.png
 
 # Start applications in ~/.config/autostart/
 exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
