@@ -297,7 +297,7 @@ input "type:touchpad" {
 
 input * xkb_numlock enable
 
-set $office1 "Dell Inc. DELL U2720Q 84G6Y13"
+set $office1 "Dell Inc. DELL U2720Q 12Z4193"
 output $office1 scale 1.5
 
 set $office2 "LG Electronics LG HDR 4K 0x0000A7F2"

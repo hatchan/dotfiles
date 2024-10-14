@@ -1,26 +1,25 @@
-[colors.bright]
-black = "0x002b36"
-blue = "0x839496"
-cyan = "0x93a1a1"
-green = "0x586e75"
-magenta = "0x6c71c4"
-red = "0xcb4b16"
-white = "0xfdf6e3"
-yellow = "0x657b83"
+[colors.primary]
+background = '#00141a' #color.base04
+foreground = '#839495' #color.fg
 
 [colors.normal]
-black = "0x073642"
-blue = "0x268bd2"
-cyan = "0x2aa198"
-green = "0x859900"
-magenta = "0xd33682"
-red = "0xdc322f"
-white = "0xeee8d5"
-yellow = "0xb58900"
+black   = '#00141a' #color.base04
+red     = '#dc312e' #color.red
+green   = '#859900' #color.green
+yellow  = '#b38600' #color.yellow
+blue    = '#278bd3' #color.blue
+magenta = '#d33682' #color.magenta
+cyan    = '#2aa298' #color.cyan
+white   = '#ede7d4' #color.base2
 
-[colors.primary]
-background = "0x002b36"
-foreground = "0x839496"
+[colors.bright]
+black   = '#002d38' #color.base03
+red     = '#f65351' #color.red300
+green   = '#b7fa00' #color.green300
+yellow  = '#ffbf00' #color.yellow300
+blue    = '#47adf5' #color.blue300
+magenta = '#f254a1' #color.magenta300
+cyan    = '#2beede' #color.cyan300
 
 [font.normal]
 family = "FiraCode Nerd Font"
