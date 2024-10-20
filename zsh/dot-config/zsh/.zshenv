@@ -9,7 +9,3 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
-
-if [ -e "$HOME/.cargo/env" ] ; then
-  . "$HOME/.cargo/env"
-fi
