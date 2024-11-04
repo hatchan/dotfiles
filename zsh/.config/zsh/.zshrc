@@ -26,4 +26,8 @@ if [[ -s "/usr/share/fzf/key-bindings.zsh" ]]; then
   source /usr/share/fzf/key-bindings.zsh
 fi
 
+if whence zoxide >& /dev/null; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
+
 alias k=kubectl
