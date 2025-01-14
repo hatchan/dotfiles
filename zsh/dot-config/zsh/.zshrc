@@ -12,7 +12,7 @@ fi
 
 # Customize to your needs...
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 if whence starship >& /dev/null; then
   eval "$(starship init zsh)"
