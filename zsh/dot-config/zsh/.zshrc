@@ -31,3 +31,7 @@ if whence zoxide >& /dev/null; then
 fi
 
 alias k=kubectl
+
+if [ "$SYSTEMD_ENVIRONMENTD_LOADED" != 1 ]; then
+  export $(systemctl --user show-environment)
+fi
